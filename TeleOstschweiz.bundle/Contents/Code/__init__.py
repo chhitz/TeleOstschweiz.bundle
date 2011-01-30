@@ -1,6 +1,6 @@
 ####################################################################################################
 
-VIDEO_PREFIX = "/video/tvo"
+VIDEO_PREFIX = "/video/teleostschweiz"
 
 MAIN_URL = "http://www.tvo-online.ch"
 SHOW_LIST_URL = MAIN_URL + "/index.php?article_id=662"
