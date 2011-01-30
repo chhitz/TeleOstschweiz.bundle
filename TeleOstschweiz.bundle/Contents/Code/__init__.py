@@ -4,6 +4,7 @@ VIDEO_PREFIX = "/video/teleostschweiz"
 
 MAIN_URL = "http://www.tvo-online.ch"
 SHOW_LIST_URL = MAIN_URL + "/index.php?article_id=662"
+OTHER_SHOWS_LIST_URL = MAIN_URL + "/index.php?article_id=139"
 ARCHIVE_LIST_URL = MAIN_URL + "/index.php?article_id=99"
 
 NAME = L('Title')
@@ -37,6 +38,34 @@ def VideoMainMenu():
         Log(description)
         show_url = show.xpath("div/h5/a")[0].get('href')
         Log(show_url)
+        thumb = MAIN_URL + show.xpath("div/a/img")[0].get('src')
+        Log(thumb)
+
+        dir.Append(
+            Function(
+                DirectoryItem(
+                    ShowDetails,
+                    title,
+                    summary=description,
+                    thumb=thumb,
+                ),
+                url = show_url,
+            )
+        )
+        shows[title] = 1
+        
+    #find other tvo stations
+    xml = HTML.ElementFromURL(OTHER_SHOWS_LIST_URL)
+    for show in xml.xpath("//div[@id='article-3']//div[@class='section']"):
+        Log(XML.StringFromElement(show))
+        show_url = show.xpath("div/h5/a")[0].get('href')
+        Log(show_url)
+        if show_url.find("tvo-online") < 0:
+            continue
+        title = show.xpath("div/h5/a")[0].text
+        Log(title)
+        description = show.xpath("div/p")[0].text
+        Log(description)
         thumb = MAIN_URL + show.xpath("div/a/img")[0].get('src')
         Log(thumb)
 
