@@ -9,7 +9,7 @@ ARCHIVE_LIST_URL = MAIN_URL + "/index.php?article_id=99"
 
 NAME = L('Title')
 
-ART           = 'art-default.png'
+ART           = 'art-default.jpg'
 ICON          = 'icon-default.png'
 
 ####################################################################################################
